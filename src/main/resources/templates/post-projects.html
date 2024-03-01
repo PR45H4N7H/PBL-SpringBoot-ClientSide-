@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>PBL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bdy">
+    <div class="container-fluid" id="webhead">
+        <div class="hlogo left" id="icon">
+            <a href="https://www.nwmissouri.edu" title="Return to Northwest">
+                <img alt="Northwest Missouri State University" height="79px"
+                    src="https://www.nwmissouri.edu/layout/v2019/images/svg/logo-n.svg" width="74px">
+            </a>
+        </div>
+        <div class="deptTitle left" id="title" style="float:left">
+            <a href="https://www.nwmissouri.edu">Northwest Missouri State University</a>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var phonePattern = /^\d{10}$/;
+
+        function userProfile()
+        {
+            var mail = document.getElementById("email").textContent;
+            var url = "/userProfile?mail="+mail;
+            window.location.href = url;
+        }
+        
+
+
+        function show() {
+            document.getElementById("projectForm").style.display = 'block';
+            document.getElementById("postInfo").style.display = 'none';
+            var buttons = document.getElementsByClassName("postprojectBTN");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.display = 'none';
+            }
+        }
+
+        function formValidation(event) {
+            var projName = document.getElementById('projName').value;
+            var projReq = document.getElementById('projReq').value;
+            var projDesc = document.getElementById('projDesc').value;
+            var projDescfull = document.getElementById('projDescfull').value;
+            var projExp = document.getElementById('projExp').value;
+           // var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var expiryDate = document.getElementById('expiryDate').value;
+            var projType = document.querySelector('input[name="projType"]:checked');
+
+            var isValid = true;
+
+            if (projName === '' || projReq === '' || projDesc === '' || projDescfull === '' || projExp === '' || phone === '' || expiryDate === '' || projType === null) {
+                alert('All fields are required.');
+                isValid = false;
+            } else if (isNaN(projExp) || projExp <= 0) {
+                alert('Please enter a valid experience (in months).');
+                isValid = false;
+            } else if (!phonePattern.test(phone)) {
+                alert('Please enter a valid 10-digit phone number.');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            } else {
+                var form = document.getElementById("projectForm");
+                //form.action = "/save"; // Set the form action dynamically
+                form.submit();
+            }
+        }
+    </script>
+
+    <div class="container-fluid">
+        <div class="sidebar left">
+            <ul class="nav-links">
+                <li>
+                    <a onclick="userProfile()">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="links_name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <i class='bx bx-box'></i>
+                        <span class="links_name">Upload projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="viewProjects">
+                        <i class='bx bx-list-ul'></i>
+                        <span class="links_name">View Projects</span>
+                    </a>
+                </li>
+                <li class="log_out">
+                    <a href="">/
+                        <i class='bx bx-log-out'></i>
+                        <span class="links_name">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="welcome">
+            <h1 th:text="${username}"></h1>
+        </div>
+        <div class="postprojectBTN Button" onclick="show()">Post a New Project</div>
+
+        <div class="container container-fluid postInfo" id="postInfo">
+            <p>Welcome to the NW PBL Project Explorer<br><h3>Professional-Based Learning</h3><br>The NW PBL Project Explorer
+                is a platform designed to facilitate professional-based learning (PBL) projects for faculties and students. It
+                serves as a central hub where users can post, explore, and discuss potential PBL projects.<br><h3>Sponsorship and
+                    Implementation</h3><br>As the CITE office, we have the opportunity to select and sponsor promising PBL
+                projects from the platform. If a project aligns with our objectives, we can provide support and resources to
+                bring it to life.<br><h3>Start Exploring PBL Projects Today</h3><br> Join the NW PBL Project Explorer to
+                discover exciting professional-based learning opportunities, connect with like-minded individuals, and
+                contribute to meaningful projects. Let's collaborate and make a real impact</p>
+        </div>
+        <div th:text = "${email}" style="display:none" id = "email"></div>
+
+        <div class="container-fluid">
+            <form id="projectForm" style="display:none" method="post" onsubmit="formValidation(event)">
+                <label for="projName">Project Name *</label>
+                <input type="text" id="projName" name="projName" placeholder="Project name.." class="required">
+
+                <label for="projReq">Project Requirements *</label>
+                <input type="text" id="projReq" name="projReq" placeholder="Enter project requirements.." class="required">
+
+                <label for="projDesc">Short Description *</label>
+                <input type="text" id="projDesc" name="projDesc" placeholder="Enter short Description.." class="required">
+
+                <label for="projDescfull">Full Description *</label>
+                <input type="text" id="projDescfull" name="projDescfull" placeholder="Enter the full Description.." class="required">
+
+                <label for="experience">Enter your experience(In Months) </label>
+                <br>
+                <input type="number" id="projExp" name="projExp" placeholder="Enter your experience related to project" class="required">
+                <br>
+
+                <label for="keywords">Keywords </label>
+                <br>
+                <input type="text" id="keywords" name="keywords" placeholder="Enter keywords to categorize the projects" class="required">
+                <br>
+                <label for="phone">Contact number</label><br>
+                <input type="number" id="phone" name="phone" placeholder="Enter your contact number.." class="required">
+
+                <label for="expiryDate">Project Expiry Date</label><br>
+                <input type="date" id="expiryDate" name="expiryDate" placeholder="Enter project expiry date" class="required"><br>
+
+                <b>Select the project type:</b>
+                <br>
+                <input type="radio" id="private" name="projType" value="Private">
+                <label for="private">Private</label><br>
+                <input type="radio" id="public" name="projType" value="Public">
+                <label for="public">Public</label><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

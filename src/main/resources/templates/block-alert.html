@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>PBL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bdy">
+    <div class="container-fluid" id="webhead">
+        <div class="hlogo left" id="icon">
+            <a href="https://www.nwmissouri.edu" title="Return to Northwest">
+                <img alt="Northwest Missouri State University" height="79px"
+                    src="https://www.nwmissouri.edu/layout/v2019/images/svg/logo-n.svg" width="74px">
+            </a>
+        </div>
+        <div class="deptTitle left" id="title" style="float:left">
+            <a href="https://www.nwmissouri.edu">Northwest Missouri State University</a>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+   
+    <div class="container-fluid">
+        <div class="sidebar left">
+            <ul class="nav-links">
+                <li>
+                    <a onclick="userProfile()">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="links_name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <i class='bx bx-box'></i>
+                        <span class="links_name">Upload projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="viewProjects">
+                        <i class='bx bx-list-ul'></i>
+                        <span class="links_name">View Projects</span>
+                    </a>
+                </li>
+                <li class="log_out">
+                    <a href="">/
+                        <i class='bx bx-log-out'></i>
+                        <span class="links_name">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="welcome" >
+            <h1 th:text = "${username}"> </h1>
+            
+        <h3 style ="color:red"> You have been disabled by Admin. You cant post projects.</h3>
+        </div>
+        </body>
+
+</html>

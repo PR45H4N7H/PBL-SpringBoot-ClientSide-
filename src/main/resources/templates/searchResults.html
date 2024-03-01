@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="/nwmsu.jpg" />
+    <title>User Project Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/viewPrj.css}" type="text/css" >
+
+
+   
+    <script>
+        function selectProject(element) {
+            var projectName = element.getAttribute('data-project-name');
+            var url = '/projectDetails?name=' + projectName;
+            window.location.href = url;
+        }
+
+        function flagProject(element) {
+            var projectName = element.getAttribute('data-project-name');
+            var url = '/flagProject?name=' + projectName;
+            window.location.href = url;
+        }
+
+        function toggle() {
+            var toggleSwitch = document.getElementById('status');
+            if (toggleSwitch.checked) {
+                var url = '/viewProjects/expired';
+                window.location.href = url;
+            } else {
+                console.log('Toggle switch is ON');
+            }
+        }
+        function userProfile()
+        {
+            var mail = document.getElementById("email").textContent;
+            var url = "/userProfile?mail="+mail;
+            window.location.href = url;
+        }
+        
+    </script>
+</head>
+
+<body>
+    <header>
+        <h2 id="h2">Projects</h2>
+        <div class="logo">
+            <img src="https://avatars0.githubusercontent.com/u/44843452?s=280&v=4">
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="sidebar left" id="viewprjsdbr">
+            <ul class="nav-links">
+                <li>
+                    <a onclick = "userProfile()">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="links_name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/postProjects">
+                        <i class='bx bx-box'></i>
+                        <span class="links_name">Upload projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="active">
+                        <i class='bx bx-list-ul'></i>
+                        <span class="links_name" onclick="window.location='viewProjects'">View Projects</span>
+                    </a>
+                </li>
+
+                <li class="log_out">
+                    <a href="/">
+                        <i class='bx bx-log-out'></i>
+                        <span class="links_name">Log out</span>
+                    </a>
+                </li>
+            </ul> 
+        </div>
+    </div>
+    
+    <div class="project-container" >
+      
+  <div class="custom-checkbox">
+    <input id="status" type="checkbox"  name="status" onchange="toggle()" >
+    <label for="status">
+      <div class="status-switch" data-unchecked="Active"  data-checked="Expired">
+      </div>
+    </label>
+  </div>
+  <div class = "projectsList">
+  <!-- Check if projects list is empty -->
+  <th:block th:if="${#lists.isEmpty(projects)}">
+    <div class="no-projects-message">
+        <p>No active projects available.</p>
+    </div>
+</th:block>
+
+<!-- Iterate over projects only if the list is not empty -->
+<th:block th:unless="${#lists.isEmpty(projects)}">
+        <div th:each="project : ${projects}" class="partition">
+            <a th:attr="data-project-name=${project.projName}" onclick="selectProject(this)">
+                <div class="partition1">
+                    <h1 class="project-name" th:text="${project.projName}"></h1>
+                </div>
+            </a>
+
+            <div class="partition2">
+                <div class="partition-content">
+                    <p th:text="${project.projDesc}"></p>
+                </div>
+            </div>
+            <a href="#">
+                <div class="partition3">
+                    
+        <div th:text = "${email}" style="display:none" id = "email"></div>
+                    <div class="partition-content star-project-user">
+                        <i class="fas fa-flag" id="flag" th:attr="data-project-name=${project.projName}"
+                            onclick="flagProject(this)"></i>
+                        <a href="#" th:attr="data-project-name=${project.projName}" onclick="selectProject(this)">reply</a>
+                        <a href="#">User</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</th:block>
+</div>
+
+</body>
+
+</html>

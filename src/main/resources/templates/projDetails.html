@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Project Page</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+  
+    <style>
+        /* CSS styling for the user project page */
+        * {
+            font-family: 'system-ui';
+        }
+        .project-container {
+            border-radius: 18px;
+            width: 100%;
+            margin-top:10px;
+            padding: 12px;
+            margin-left: 6.2cm;
+        }
+        .partition {
+            position: fixed;
+            border-radius: 8px;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-left:20px;
+            margin-bottom: 20px;
+            display: block;
+            top:18%;
+            height: 80%; 
+            max-height: 800px; 
+            overflow-y: auto;
+            width:80%;
+            
+        }
+        .partition1 {
+            padding-top: 0px;
+            padding-left: 20px;
+            padding-bottom: 0px;
+            border-bottom: 2px solid #000;
+            margin-bottom: 12px;
+        }
+        .partition2 {
+            border-radius: 4px;
+            background-color: white;
+            padding-top: 0px;
+            padding-left: 20px;
+            padding-bottom: 40px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            margin : 15px;	
+        }
+        .partition3 {
+            border-radius: 4px;
+            background-color: t ransparent;
+            position: relative;
+            border: 0px;
+        }
+        .partition h2 {
+            margin: 0;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .partition-content {
+            margin-top: 10px;
+        }
+        .star-project-user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .star-project-user button {
+            padding: 5px 10px;
+            border-radius: 10px;
+            background-color: red;
+        }
+        #h2 {
+            background-color: #006A4E;
+            color: #f0f0f0;
+            padding: 20px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-left: 2cm;
+            letter-spacing: 3px;
+            box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.3);
+            position:fixed;
+            width:100%;
+        }
+        #commentText
+        {
+            width: 90%;
+            padding-top: 10px;
+            padding-left: 20px;
+           border-radius: 8px;
+        }
+        main {
+            align-items: center;
+            justify-content: center;
+            height: 75vh;
+            width: 100%;
+            background-size: contain;
+            display: block;
+        }
+        .logo {
+            position: fixed;
+            display: flex;
+            height: 70px;
+            width: 70px;
+            top: 30px;
+        }
+        .logo:hover {
+            left: -6px;
+            top: 22px;
+            height: 90px;
+            width: 90px;
+        }
+        .comment {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .comment .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .comment .user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .comment .user-info .username {
+            font-weight: bold;
+        }
+        .reply-form, .reply-form1 {
+            margin-top: 10px;
+            
+            
+        }
+        .reply-form textarea, .reply-form1 textarea {
+            width: 90%;
+            border-radius: 10px;
+            border: transparent;
+            
+        }
+        .reply-form button, .reply-form1 button {
+            margin-top: 5px;
+            border-radius: 10px;
+            background-color: #006A4E;
+            color: #fff;
+            padding: 5px 10px;
+        }
+        .partition2 {
+            overflow-y: auto;
+            max-height: 300px; /* Set the maximum height for the comments container */
+        }
+        .button {
+            background-color: #4CAF50; /* Green */
+             border: none;
+            color: white;
+            padding: 15px 32px;
+             text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 14px;
+            margin: 4px 2px;
+             cursor: pointer;
+             border-radius: 5px;
+        }.comment {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-info {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-content {
+    margin-bottom: 10px;
+}
+
+.comment-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flag-button {
+    background-color: #ff6961;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reply-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.subcomment {
+    margin-top: 5px;
+    margin-left: 20px; /* Adjust the margin to create the nesting effect */
+    
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.subcomment .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.subcomment .user-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.subcomment .user-info .username {
+    font-weight: bold;
+}
+
+.subcomment .subcomment-content {
+    margin-bottom: 10px;
+}
+
+.subcomment .comment-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.subcomment .flag-button {
+    background-color: #ff6961;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.subcomment .reply-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+        .button1 {background-color: #008CBA; float:right} /* Blue */
+        /*.button3 {background-color: #f44336;} /* Red */ 
+        /*.button {background-color: #e7e7e7; color: black;} /* Gray */ 
+        .button2 {background-color: #555555;float:right;top:0px} /* Black */
+/* Add animation styles for the sendRequest form */
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+#sendRequestForm {
+    position: fixed;
+    top: 275px ;
+    right: 50px;
+    width: 30%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    border-radius:10px;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+#sendRequestForm.show {
+    animation: slideIn 0.3s ease-in-out;
+    display: block;
+}
+
+#sendRequestForm.hide {
+    animation: slideOut 0.3s ease-in-out;
+    display: none;
+}
+
+/* Additional styling for the form inputs and buttons */
+#sendRequestForm input[type="text"] {
+    width: calc(100% - 20px);
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#sendRequestForm button {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.reply-button {
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Font size */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+}
+
+.reply-button:hover {
+    background-color: #45a049; /* Darker green background color on hover */
+}
+.replyToComment:hover
+{
+    font-size: 13px;
+}
+#flag:hover{
+            height:26px;
+            width: 20px;
+            display: flex;
+        }
+
+.flagged
+{
+    color:red;
+}
+
+/* Rest of your CSS styles... */
+
+
+
+    </style>
+
+    <script>
+        var usernameValue;
+        document.addEventListener("DOMContentLoaded", function() {
+    usernameValue = document.getElementById('usernamedb').textContent;
+    
+});
+
+    function sendRequest() {
+        var sendRequestForm = document.getElementById('sendRequestForm');
+        sendRequestForm.classList.remove('hide');
+        sendRequestForm.classList.add('show');
+    }
+    
+    function submitRequest() {
+    var contactName = document.getElementById("contactname").value;
+    var contactEmail = document.getElementById("contactemail").value;
+
+    if (contactName && contactEmail) {
+        var xhr = new XMLHttpRequest();
+        var projectNameElement = document.getElementById("projName"); 
+
+        var projectName = projectNameElement.textContent;
+        var url = "/saveRequests?contactName=" + encodeURIComponent(contactName) + "&contactEmail=" + encodeURIComponent(contactEmail) + "&projName=" + encodeURIComponent(projectName);
+
+        window.location.href = url;
+    } else {
+        alert("Please fill out all fields.");
+    }
+}
+
+
+
+
+    function cancelRequest() {
+        hideRequestForm();
+    }
+    
+    function flagComment(element) 
+    {
+
+    var commentId = element.getAttribute('data-comment-id');
+
+    // Send a request to the server to flag the comment
+    fetch(`/api/comments/${commentId}/flag`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // You can include additional data in the request body if needed
+        // body: JSON.stringify({}),
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("comment flagged");
+            element.classList.add('flagged');
+
+        } else {
+            console.error('Failed to flag comment:', response.status, response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error('Error flagging comment:', error);
+    });
+}
+
+
+function flagSubComment(element) {
+    var subcommentId = element.getAttribute('data-subcomment-id');
+    var commentId = element.getAttribute('data-comment-id');
+    console.log(commentId);
+
+    // Send a request to the server to flag the subcomment
+    fetch(`/api/comments/${commentId}/subcomments/${subcommentId}/flag`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            commentId: commentId,
+            subcommentId: subcommentId,
+        }),
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("subcomment flagged");
+            element.classList.add('flagged');
+        } else {
+            console.error('Failed to flag subcomment:', response.status, response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error('Error flagging subcomment:', error);
+    });
+}
+
+
+    
+    function hideRequestForm() {
+        var sendRequestForm = document.getElementById('sendRequestForm');
+        sendRequestForm.classList.remove('show');
+        sendRequestForm.classList.add('hide');
+    }
+    function userProfile()
+        {
+            var mail = document.getElementById("email").textContent;
+            var url = "/userProfile?mail="+mail;
+            window.location.href = url;
+        }
+        
+ 
+
+ function replyComment(label) {
+    const replyFormId = label.getAttribute('data-comment-id');
+    const replyForm = document.querySelector(`form[data-reply-form-id="${replyFormId}"]`);
+    replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+ }
+
+
+    // Other JavaScript code...
+
+
+
+     </script>
+</head>
+<body>
+    <header>
+        <h2 id="h2">Project Page</h2>
+        <div class="logo">
+            <img src="https://avatars0.githubusercontent.com/u/44843452?s=280&v=4" onclick="redirectToWebsite()">
+        </div>
+    </header>
+    <main>
+    <div class="container-fluid">
+        <div class="sidebar left">
+            <ul class="nav-links">
+                <li>
+                    <a onclick="userProfile()">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="links_name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="postProjects" >
+                        <i class='bx bx-box'></i>
+                        <span class="links_name">Upload projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="viewProjects">
+                        <i class='bx bx-list-ul'></i>
+                        <span class="links_name">View Projects</span>
+                    </a>
+                </li>
+                <li class="log_out">
+                    <a href="/">
+                        <i class='bx bx-log-out'></i>
+                        <span class="links_name">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="project-container" class="project-container">
+            
+        <div th:text = "${email}" style="display:none" id = "email"></div>
+            <div class="partition">
+                <div class="partition1">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="list-group">
+                                    <h1 class="list-group-item list-group-item-action" id="projName" th:text="${projectName}"></h1>
+                                    <button class="list-group-item list-group-item-action button button1" onclick="sendRequest()">Send Request</button>
+                                </div>
+                            </div>
+                        </div>
+                         <br>
+                        <b>Project Full Description:</b>            
+                        <p class="project-description" style="margin-left:35px;margin:20px" th:text="${projDescFull}"></p>     
+                        <b>Project Requirements:</b>            
+                        <p class="project-requirements" style="margin-left:35px;margin:20px" th:text="${projReq}"></p>     
+                        <b>Contact Email:</b>        
+                        <p class="project-Contact email" style="margin-left:35px;margin:20px" th:text="${email}"></p>    
+                        <b>Phone:</b>                
+                        <p class="phone" style="margin-left:35px;margin:20px" th:text="${phone}"></p>     
+                        <b>Project Experience: </b>                                
+                        <p class="projExp" style="margin-left:35px;margin:20px" th:text="${projectExp}"></p>
+
+						<div style="display: none" id="userBlocked" th:text="${blocked}"></div>
+                        
+
+                   
+                    </div>
+                <div class="partition2">                                                           
+                    <div class="partition3">
+                        <h2>Comments</h2>
+                        <div id="comments">
+                            
+                            <form onsubmit="addComment(event)">
+                                <textarea id="commentText" placeholder="Write a comment" required></textarea>
+                                <button id="post-cmt" class="button button2" type="submit" >Post</button>
+                            </form>
+                            <label th:text="${username}" id="usernamedb" style="display:none"></label>
+
+                        </div>
+                        <div id="preloadcomments">
+                            <th:block th:unless="${#lists.isEmpty(comments)}">
+                                <div th:each="comment : ${comments}" class="comment" th:id="${comment.id}">
+                                    <div class="user-info">
+                                        <img th:src="'data:image/jpeg;base64,' + ${comment.profilePicture}" />
+                                        <span class="username" th:text="${comment.usrName}"></span>
+                                    </div>
+                                    <div class="comment-content" th:text="${comment.text}"></div>
+                                          
+                                    <i class="fas fa-flag" th:attr="data-comment-id=${comment.id}" onclick="flagComment(this)" style="margin:10px"></i> 
+                                    <u><b><label class="replyToComment" th:data-comment-id="${comment.id}" onclick="toggleReplyForm(this)" style="font-size: 11px;color:blue">Reply</label></b></u>
+                                    
+                                    <form class="reply-form" th:data-reply-form-id="${comment.id}" style="display:none">
+                                        <input type="text" th:id="'subCommentText_' + ${comment.id}" />
+                                        <button type="button" th:id="'replyBtn_' + ${comment.id}">Reply</button>
+                                    </form>
+                                    
+                                    <th:block th:unless="${#lists.isEmpty(comment.replies)}">
+                                        <div th:each="subcomment : ${comment.replies}" class="subcomment">
+                                            <div class="user-info">
+                                                <img th:src="'data:image/jpeg;base64,' + ${comment.profilePicture}" />
+
+                                                <img th:src="'data:image/jpeg;base64,' + ${subcomment.profilePicture}" />
+                                                <span class="username" th:text="${subcomment.usrName}"></span>
+                                            </div>
+                                            <span class="subcomment-content" th:text="${subcomment.text}"></span>                                                                           
+                                            <br>
+                                            <i class="fas fa-flag" th:attr="data-comment-id=${comment.id}, data-subcomment-id=${subcomment.id}" onclick="flagSubComment(this)"></i>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </th:block>
+                        </div>   
+                </div>
+            </div>
+        </div>
+   </div> </main>
+   <form id="sendRequestForm" action="/saveRequests" method="post">
+    <div class="container sendRequest">
+        <label>Enter your name</label>
+        <input type="text" id="contactname" name="contactName" required>
+        <label>Enter your email</label>
+        <input type="text" id="contactemail" name="contactEmail" required>
+        <button class="button button1" type="button" onclick="submitRequest()">Submit</button>
+        <button class="button button2" type="button" onclick="cancelRequest()">Cancel</button>
+    </div>
+</form>
+
+
+    <script>
+
+    var usernameValue;
+    document.addEventListener("DOMContentLoaded", function() {
+    usernameValue = document.getElementById('usernamedb').textContent;
+    
+});
+        
+        var projectNameElement = document.getElementById("projName"); 
+        var projectId = projectNameElement.textContent; 
+        console.log("project name is " +projectId);    
+   
+        async function addComment(event) {
+        event.preventDefault();
+    
+        var commentText = document.getElementById('commentText').value;
+        
+        var usrName = usernameValue;
+    console.log(usrName+"user name value");
+      if (isUserBlocked()) {
+        alert("You are disabled by Admin, cannot post comments.");
+        return;
+    }
+        try {
+            const response = await fetch(`/api/comments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ projectId, text: commentText , usrName}),
+            });
+    
+            location.reload();
+            /*const comment = await response.json();
+            var commentElement = createCommentElement(comment.text, comment.id);
+            document.getElementById('comments').appendChild(commentElement);
+    
+            document.getElementById('commentText').value = '';*/
+        } catch (error) {
+            console.error('Error adding comment:', error);
+        }
+    }
+
+   
+function toggleReplyForm(label) {
+    const replyFormId = label.getAttribute('data-comment-id');
+    const commentDiv = document.getElementById(replyFormId);
+    const replyForm = commentDiv.querySelector('.reply-form');
+    replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+}
+document.querySelectorAll('button[id^="replyBtn_"]').forEach(function (button) {
+    button.addEventListener('click', function () {
+        const commentId = this.id.replace('replyBtn_', '');
+        const input = document.getElementById(`subCommentText_${commentId}`);
+        addReply(input, commentId);
+    });
+});
+function isUserBlocked() {
+    var blockedValueElement = document.getElementById("userBlocked");
+
+    if (blockedValueElement) {
+        var blockedValue = blockedValueElement.innerText;
+
+        if (blockedValue === "yes") {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+async function addReply(input, commentId) {
+    
+    var usrName = usernameValue;
+      if (isUserBlocked() ) {
+        alert("You are disabled by Admin, cannot post comments.");
+        return;
+    }
+    try {
+        const replyText = input.value.trim();
+        if (replyText === '') {
+            console.warn('Reply text cannot be empty.');
+            return;
+        }
+
+
+        const response = await fetch(`/api/comments/${commentId}/replies`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text: replyText, commentId, usrName }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to add reply: ${response.status} ${response.statusText}`);
+        }
+
+        const updatedComment = await response.json();
+
+        // Log the received data to understand its structure
+        console.log('Updated Comment:', updatedComment);
+
+        // Check if replies array exists
+        if (updatedComment && updatedComment.replies && updatedComment.replies.length > 0) {
+            const replyElement = createSubcommentElement(updatedComment.replies[updatedComment.replies.length - 1]);
+            console.log(replyElement);
+            const commentContainer = document.getElementById(`${commentId}`);
+            if (commentContainer) {
+            commentContainer.appendChild(replyElement);
+        } else {
+        console.error('Comment container not found:', commentId);
+    }   
+
+        } else {
+            console.error('Invalid or missing replies array in the updated comment:', updatedComment);
+        }
+
+        input.value = '';
+    } catch (error) {
+        console.error('Failed to add reply:', error);
+    }
+}
+
+function createSubcommentElement(subcomment,comment) {
+    const element = document.createElement('div');
+    element.id = `subcomment_${subcomment.id}`;
+    element.classList.add('subcomment');
+    element.innerHTML = `
+       <div class="username-info">
+       <b>  <span class="username">${subcomment.usrName}</span></b>
+         </div>
+         <span class="subcomment-content">${subcomment.text}</span>
+         <br>         
+         <i class="fas fa-flag" th:attr="data-subcomment-id=${subcomment.id}" onclick="flagSubComment(this)"></i>
+    `;
+    return element;
+}    
+    function redirectToWebsite() {
+    window.location.href = 'https://www.nwmissouri.edu/'; // Replace with the desired website URL
+}
+
+
+    function createCommentElement(commentText, commentId) {
+
+        var commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.id = commentId;
+
+            var userInfoDiv = document.createElement('div');
+            userInfoDiv.className = 'user-info';
+
+            var userAvatarImg = document.createElement('img');
+            userAvatarImg.src = 'https://purepng.com/public/uploads/large/purepng.com-ironmanironmansuperheromarvel-comicscharactermarvel-studiosrobert-downey-jrtony-stark-1701528612013ewdfe.png'; // Replace with the user's avatar URL
+            userInfoDiv.appendChild(userAvatarImg);
+
+            var usernameSpan = document.createElement('span');
+            usernameSpan.className = 'username';
+            usernameSpan.textContent = usernameValue; // Replace with the user's username
+            userInfoDiv.appendChild(usernameSpan);
+
+            commentDiv.appendChild(userInfoDiv);
+
+            var contentDiv = document.createElement('div');
+            contentDiv.className = 'content';
+            contentDiv.textContent = commentText;
+            commentDiv.appendChild(contentDiv);
+        
+            
+            var replyButton = document.createElement('button');
+            replyButton.type = 'button';
+            replyButton.textContent = 'Reply';
+            replyForm.appendChild(replyButton);
+
+
+            /*var replyForm = document.createElement('form');
+            replyForm.className = 'reply-form';
+
+            var replyTextarea = document.createElement('textarea');
+            replyTextarea.placeholder = 'Reply to this comment';
+            replyTextarea.id = commentId + '-reply'; 
+
+            replyForm.appendChild(replyTextarea);
+
+
+            commentDiv.appendChild(replyForm);
+            
+    replyForm.onsubmit = function(event) {
+        event.preventDefault();
+                addReply(event, commentId,replyTextarea);
+            };*/
+            
+
+            return commentDiv;
+    }
+    
+    
+        
+    
+
+
+        function redirectToWebsite() {
+            window.location.href = 'https://www.nwmissouri.edu/'; // Replace with the desired website URL
+        }
+
+
+    </script>
+</body>
+</html>
